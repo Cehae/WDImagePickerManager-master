@@ -7,27 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE3C5E481E1E4C5F00745005 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C5E411E1E4C5F00745005 /* UIView+Frame.m */; };
-		BE3C5E491E1E4C5F00745005 /* WDImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C5E431E1E4C5F00745005 /* WDImagePickerManager.m */; };
-		BE3C5E4A1E1E4C5F00745005 /* WDTailoringImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C5E451E1E4C5F00745005 /* WDTailoringImageController.m */; };
-		BE3C5E4B1E1E4C5F00745005 /* WDTailoringView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C5E471E1E4C5F00745005 /* WDTailoringView.m */; };
 		BECFAF8A1E1CC8F70050F494 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BECFAF891E1CC8F70050F494 /* main.m */; };
 		BECFAF8D1E1CC8F70050F494 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BECFAF8C1E1CC8F70050F494 /* AppDelegate.m */; };
 		BECFAF901E1CC8F70050F494 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECFAF8F1E1CC8F70050F494 /* ViewController.m */; };
 		BECFAF931E1CC8F70050F494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECFAF911E1CC8F70050F494 /* Main.storyboard */; };
 		BECFAF951E1CC8F70050F494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BECFAF941E1CC8F70050F494 /* Assets.xcassets */; };
 		BECFAF981E1CC8F70050F494 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECFAF961E1CC8F70050F494 /* LaunchScreen.storyboard */; };
+		BEDCE8E81E4C6EC5006573F4 /* WDImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */; };
+		BEDCE8F61E4C764A006573F4 /* WDTailoringController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */; };
+		BEFC66891E4D677A004F23BF /* WDImageMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFC66881E4D677A004F23BF /* WDImageMaskView.m */; };
+		BEFC668C1E4D9C74004F23BF /* UIImage+WDCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BE3C5E401E1E4C5F00745005 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		BE3C5E411E1E4C5F00745005 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		BE3C5E421E1E4C5F00745005 /* WDImagePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImagePickerManager.h; sourceTree = "<group>"; };
-		BE3C5E431E1E4C5F00745005 /* WDImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImagePickerManager.m; sourceTree = "<group>"; };
-		BE3C5E441E1E4C5F00745005 /* WDTailoringImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTailoringImageController.h; sourceTree = "<group>"; };
-		BE3C5E451E1E4C5F00745005 /* WDTailoringImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTailoringImageController.m; sourceTree = "<group>"; };
-		BE3C5E461E1E4C5F00745005 /* WDTailoringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTailoringView.h; sourceTree = "<group>"; };
-		BE3C5E471E1E4C5F00745005 /* WDTailoringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTailoringView.m; sourceTree = "<group>"; };
 		BECFAF851E1CC8F70050F494 /* WDImagePickerManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDImagePickerManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECFAF891E1CC8F70050F494 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BECFAF8B1E1CC8F70050F494 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -38,6 +30,15 @@
 		BECFAF941E1CC8F70050F494 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BECFAF971E1CC8F70050F494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BECFAF991E1CC8F70050F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEDCE8E51E4C6E61006573F4 /* WDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDSingleton.h; sourceTree = "<group>"; };
+		BEDCE8E61E4C6EC5006573F4 /* WDImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImageManager.h; sourceTree = "<group>"; };
+		BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImageManager.m; sourceTree = "<group>"; };
+		BEDCE8F41E4C764A006573F4 /* WDTailoringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTailoringController.h; sourceTree = "<group>"; };
+		BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTailoringController.m; sourceTree = "<group>"; };
+		BEFC66871E4D677A004F23BF /* WDImageMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImageMaskView.h; sourceTree = "<group>"; };
+		BEFC66881E4D677A004F23BF /* WDImageMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImageMaskView.m; sourceTree = "<group>"; };
+		BEFC668A1E4D9C74004F23BF /* UIImage+WDCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WDCrop.h"; sourceTree = "<group>"; };
+		BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WDCrop.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +55,15 @@
 		BE3C5E3F1E1E4C5F00745005 /* WDImagePickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				BE3C5E401E1E4C5F00745005 /* UIView+Frame.h */,
-				BE3C5E411E1E4C5F00745005 /* UIView+Frame.m */,
-				BE3C5E421E1E4C5F00745005 /* WDImagePickerManager.h */,
-				BE3C5E431E1E4C5F00745005 /* WDImagePickerManager.m */,
-				BE3C5E441E1E4C5F00745005 /* WDTailoringImageController.h */,
-				BE3C5E451E1E4C5F00745005 /* WDTailoringImageController.m */,
-				BE3C5E461E1E4C5F00745005 /* WDTailoringView.h */,
-				BE3C5E471E1E4C5F00745005 /* WDTailoringView.m */,
+				BEFC668A1E4D9C74004F23BF /* UIImage+WDCrop.h */,
+				BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */,
+				BEFC66871E4D677A004F23BF /* WDImageMaskView.h */,
+				BEFC66881E4D677A004F23BF /* WDImageMaskView.m */,
+				BEDCE8F41E4C764A006573F4 /* WDTailoringController.h */,
+				BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */,
+				BEDCE8E51E4C6E61006573F4 /* WDSingleton.h */,
+				BEDCE8E61E4C6EC5006573F4 /* WDImageManager.h */,
+				BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */,
 			);
 			name = WDImagePickerManager;
 			path = ../../WDImagePickerManager;
@@ -180,12 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3C5E4A1E1E4C5F00745005 /* WDTailoringImageController.m in Sources */,
-				BE3C5E481E1E4C5F00745005 /* UIView+Frame.m in Sources */,
 				BECFAF901E1CC8F70050F494 /* ViewController.m in Sources */,
-				BE3C5E4B1E1E4C5F00745005 /* WDTailoringView.m in Sources */,
-				BE3C5E491E1E4C5F00745005 /* WDImagePickerManager.m in Sources */,
+				BEFC66891E4D677A004F23BF /* WDImageMaskView.m in Sources */,
+				BEDCE8F61E4C764A006573F4 /* WDTailoringController.m in Sources */,
+				BEDCE8E81E4C6EC5006573F4 /* WDImageManager.m in Sources */,
 				BECFAF8D1E1CC8F70050F494 /* AppDelegate.m in Sources */,
+				BEFC668C1E4D9C74004F23BF /* UIImage+WDCrop.m in Sources */,
 				BECFAF8A1E1CC8F70050F494 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

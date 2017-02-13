@@ -7,13 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "WDImagePickerManager.h"
 
-#define ScreenWidth      [[UIScreen mainScreen] bounds].size.width
-#define ScreenHeight      [[UIScreen mainScreen] bounds].size.height
+#import "WDImageManager.h"
 
 @interface ViewController ()
-@property (nonatomic, strong)WDImagePickerManager *manager;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 
 @end
@@ -26,15 +24,25 @@
 
 - (IBAction)openImage:(UIButton *)sender {
     
-    self.manager =  [WDImagePickerManager manager];
-    
-    [_manager getImageInVC:self tailoringSize:CGSizeMake(ScreenWidth * 0.8, ScreenHeight * 0.3)];
-    
+
     __typeof(self) __weak weakSelf = self;
-    _manager.getImageBlock = ^(UIImage *image)
-    {
+
+    
+// [[WDImageManager sharedManager] getOriginalImageInVC:self withCallback:^(UIImage *image) {
+//    
+//     weakSelf.imageV.image = image;
+//     
+// }];
+    
+    [[WDImageManager sharedManager] getSquareImageInVC:self withSize:CGSizeMake(100,50) withCallback:^(UIImage *image) {
         weakSelf.imageV.image = image;
-    };
+
+    }];
+
+//    [[WDImageManager sharedManager] getCircleImageInVc:self withSize:CGSizeMake(200, 50) withCallback:^(UIImage *image) {
+//        weakSelf.imageV.image = image;
+//        
+//    }];
 
 }
 
