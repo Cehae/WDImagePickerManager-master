@@ -9,20 +9,20 @@
 #import "UIImage+WDCrop.h"
 
 @implementation UIImage (WDCrop)
+
 + (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
 {
     UIGraphicsBeginImageContext(newSize);
+    
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
+    
     return newImage;
 }
-- (UIImage *)cropImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
-    CGRect rect = CGRectMake(x, y, width, height);
-    CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
-    UIImage *image = [UIImage imageWithCGImage:imageRef];
-    return image;
-}
+
 +(UIImage *)fitScreenWithImage:(UIImage *)image
 {
     CGSize newSize;
@@ -41,4 +41,47 @@
     return image;
 }
 
+#pragma mark - 裁剪图片
+
+- (UIImage *)cropSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
+{
+    
+    CGRect rect = CGRectMake(x, y, width, height);
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
+    
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    
+    CGImageRelease(imageRef);
+    
+    return image;
+}
+
+- (UIImage *)cropCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
+{
+    
+    CGRect rect = CGRectMake(x, y, width, height);
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
+    
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    
+    CGImageRelease(imageRef);
+
+    CGSize size = CGSizeMake(width, height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0,0,width,height)];
+    
+    [clipPath addClip];
+    
+    [image drawAtPoint:CGPointZero];
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 @end

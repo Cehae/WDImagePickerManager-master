@@ -5,7 +5,9 @@
 //  Created by huylens on 17/2/9.
 //  Copyright © 2017年 WDD. All rights reserved.
 //
-
+//  Github:https://github.com/Cehae/WDImagePickerManager-master
+//  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
+//
 #import "WDImageManager.h"
 #import "WDTailoringController.h"
 
@@ -142,7 +144,7 @@ WDSingletonM(Manager);
             cutVC.mode = ImageMaskViewModeSquare;
             
             cutVC.dotted = YES;
-            cutVC.lineColor = [UIColor redColor];
+            cutVC.lineColor = [UIColor whiteColor];
 
             [picker pushViewController:cutVC animated:YES];
         }

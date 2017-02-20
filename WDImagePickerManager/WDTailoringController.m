@@ -5,7 +5,9 @@
 //  Created by huylens on 17/2/9.
 //  Copyright © 2017年 WDD. All rights reserved.
 //
-
+//  Github:https://github.com/Cehae/WDImagePickerManager-master
+//  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
+//
 #import "WDTailoringController.h"
 
 #import "WDImageMaskView.h"
@@ -183,8 +185,16 @@
         aHeight = self.cropHeight/zoomScale;
     }
     
-    UIImage *image = [self.cutImage cropImageWithX:aX y:aY width:aWidth height:aHeight];
-    image = [UIImage imageWithImageSimple:image scaledToSize:CGSizeMake(self.cropWidth, self.cropHeight)];
+    UIImage *image = nil;
+    
+    if (self.mode == ImageMaskViewModeCircle)
+    {
+        image = [self.cutImage cropCircleImageWithX:aX y:aY width:aWidth height:aHeight];
+    }else
+    {
+        image = [self.cutImage cropSquareImageWithX:aX y:aY width:aWidth height:aHeight];
+    }
+        
     return image;
 }
 
@@ -204,7 +214,7 @@
     CGSize imageSize = self.cutImage.size;
 
     CGFloat minimunZoomScale = imageSize.width < imageSize.height ? maskCircleWidth / imageSize.width : maskCircleWidth / imageSize.height;
-    CGFloat maximumZoomScale = 1.5;
+    CGFloat maximumZoomScale = 2.0;
     self.scrollView.minimumZoomScale = minimunZoomScale;
     self.scrollView.maximumZoomScale = maximumZoomScale;
     self.scrollView.zoomScale = self.scrollView.zoomScale < minimunZoomScale ? minimunZoomScale : self.scrollView.zoomScale;

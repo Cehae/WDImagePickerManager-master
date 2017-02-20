@@ -5,7 +5,9 @@
 //  Created by huylens on 17/2/10.
 //  Copyright © 2017年 WDD. All rights reserved.
 //
-
+//  Github:https://github.com/Cehae/WDImagePickerManager-master
+//  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
+//
 #import "WDImageMaskView.h"
 
 #define SCREEN_WIDTH    ([UIScreen mainScreen].bounds.size.width)
@@ -70,7 +72,7 @@
 #pragma mark - 裁剪矩形
 -(void)cropSquare:(CGRect)rect
 {
-   CGFloat width = rect.size.width;
+    CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
     
     CGContextRef contextRef = UIGraphicsGetCurrentContext();

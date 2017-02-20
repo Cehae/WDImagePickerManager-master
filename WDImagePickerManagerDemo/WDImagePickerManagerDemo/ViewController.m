@@ -24,26 +24,26 @@
 
 - (IBAction)openImage:(UIButton *)sender {
     
-
+    
     __typeof(self) __weak weakSelf = self;
-
     
-// [[WDImageManager sharedManager] getOriginalImageInVC:self withCallback:^(UIImage *image) {
-//    
-//     weakSelf.imageV.image = image;
-//     
-// }];
     
-    [[WDImageManager sharedManager] getSquareImageInVC:self withSize:CGSizeMake(100,50) withCallback:^(UIImage *image) {
+    // [[WDImageManager sharedManager] getOriginalImageInVC:self withCallback:^(UIImage *image) {
+    //
+    //     weakSelf.imageV.image = image;
+    //
+    // }];
+    
+    //    [[WDImageManager sharedManager] getSquareImageInVC:self withSize:CGSizeMake(100,50) withCallback:^(UIImage *image) {
+    //        weakSelf.imageV.image = image;
+    //
+    //    }];
+    
+    [[WDImageManager sharedManager] getCircleImageInVc:self withSize:CGSizeMake(200, 50) withCallback:^(UIImage *image) {
         weakSelf.imageV.image = image;
-
+        
     }];
-
-//    [[WDImageManager sharedManager] getCircleImageInVc:self withSize:CGSizeMake(200, 50) withCallback:^(UIImage *image) {
-//        weakSelf.imageV.image = image;
-//        
-//    }];
-
+    
 }
 
 @end

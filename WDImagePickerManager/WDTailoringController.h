@@ -5,7 +5,9 @@
 //  Created by huylens on 17/2/9.
 //  Copyright © 2017年 WDD. All rights reserved.
 //
-
+//  Github:https://github.com/Cehae/WDImagePickerManager-master
+//  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
+//
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, ImageMaskViewMode) {
     ImageMaskViewModeSquare = 1, //矩形

@@ -12,16 +12,17 @@
 #define SCREEN_HEIGHT   ([UIScreen mainScreen].bounds.size.height)
 
 @interface UIImage (WDCrop)
-/*
- * 改变图片size
- */
-+ (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
-/**
- * 将image适配屏幕
- */
+
 +(UIImage *)fitScreenWithImage:(UIImage *)image;
-/*
- * 裁剪图片
- */
-- (UIImage *)cropImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+
+#pragma mark - 裁剪图片
+
+#pragma mark - 矩形
+- (UIImage *)cropSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+
+#pragma mark - 圆形
+- (UIImage *)cropCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+
+
+
 @end
