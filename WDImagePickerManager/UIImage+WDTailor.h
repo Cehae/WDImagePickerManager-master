@@ -13,17 +13,14 @@
 
 @interface UIImage (WDTailor)
 
-//+(UIImage *)fitScreenWithImage:(UIImage *)image;
-
 #pragma mark - 解决图片旋转90°的分类
 +(UIImage *)fixOrientation:(UIImage *)aImage;
 
 #pragma mark - 裁剪图片
-
 #pragma mark - 矩形
-- (UIImage *)cropSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+- (UIImage *)tailorSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
 
 #pragma mark - 圆形
-- (UIImage *)cropCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+- (UIImage *)tailorCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
 
 @end

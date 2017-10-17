@@ -93,7 +93,7 @@
     [self.view addSubview:self.maskView];
     _maskView.delegate = self;
     
-    _maskView.cutSize = self.tailorSize;
+    _maskView.tailorSize = self.tailorSize;
     _maskView.mode = self.mode;
     
     _maskView.dotted = self.isDotted;
@@ -149,7 +149,7 @@
 - (void)sureBtnClicked
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(WDTailorController:didSelectSure:)]) {
-        [self.delegate WDTailorController:self didSelectSure:[self cropImage]];
+        [self.delegate WDTailorController:self didSelectSure:[self tailorImage]];
     }
 }
 -(void)cancelBtnClicked
@@ -167,7 +167,7 @@
 }
 
 #pragma mark - 裁剪图片
-- (UIImage *)cropImage {
+- (UIImage *)tailorImage {
     CGFloat zoomScale = _scrollView.zoomScale;
     
     CGFloat offsetX = _scrollView.contentOffset.x;
@@ -189,10 +189,10 @@
     
     if (self.mode == WDImageMaskViewModeCircle)
     {
-        image = [self.originalImage cropCircleImageWithX:aX y:aY width:aWidth height:aHeight];
+        image = [self.originalImage tailorCircleImageWithX:aX y:aY width:aWidth height:aHeight];
     }else
     {
-        image = [self.originalImage cropSquareImageWithX:aX y:aY width:aWidth height:aHeight];
+        image = [self.originalImage tailorSquareImageWithX:aX y:aY width:aWidth height:aHeight];
     }
         
     return image;

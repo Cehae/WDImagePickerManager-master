@@ -15,11 +15,10 @@
 
 @implementation WDImageMaskView
 {
-    CGRect _squareRect;//裁剪区域
-    CGFloat _cropWidth;
-    CGFloat _cropHeight;
+    CGRect _tailorRect;//裁剪区域
+    CGFloat _tailorWidth;
+    CGFloat _tailorHeight;
 }
-
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -28,7 +27,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = NO;
         
-        self.cutSize  = CGSizeZero;
+        self.tailorSize  = CGSizeZero;
         self.lineColor  = [UIColor whiteColor];
     }
     return self;
@@ -36,12 +35,13 @@
 
 
 #pragma mark - setter方法
--(void)setCutSize:(CGSize)cutSize
+-(void)setTailorSize:(CGSize)tailorSize
 {
-    _cropWidth = cutSize.width > 0 ? cutSize.width:WDSCREEN_WIDTH;
-    _cropHeight = cutSize.height > 0 ? cutSize.height:WDSCREEN_WIDTH;
-    _cutSize = CGSizeMake(_cropWidth, _cropHeight);
+    _tailorWidth = tailorSize.width > 0 ? tailorSize.width:WDSCREEN_WIDTH;
+    _tailorHeight = tailorSize.height > 0 ? tailorSize.height:WDSCREEN_WIDTH;
+    _tailorSize = CGSizeMake(_tailorWidth, _tailorHeight);
 }
+
 -(void)setLineColor:(UIColor *)lineColor
 {
     _lineColor = lineColor ? lineColor: [UIColor whiteColor];
@@ -55,20 +55,20 @@
     
     if (self.mode == WDImageMaskViewModeCircle)
     {
-        [self cropCircle:rect];
+        [self tailorCircle:rect];
     }else
     {
-        [self cropSquare:rect];
+        [self tailorSquare:rect];
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(layoutScrollViewWithRect:)]) {
         
-        [self.delegate layoutScrollViewWithRect:_squareRect];
+        [self.delegate layoutScrollViewWithRect:_tailorRect];
     }
 }
 
 #pragma mark - 裁剪矩形
--(void)cropSquare:(CGRect)rect
+-(void)tailorSquare:(CGRect)rect
 {
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
@@ -77,8 +77,8 @@
     CGContextSaveGState(contextRef);
     CGContextSetRGBFillColor(contextRef, 0, 0, 0, 0.4);
     
-    _squareRect = CGRectMake((width - _cropWidth) / 2, (height - _cropHeight) / 2, _cropWidth, _cropHeight);
-    UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:_squareRect];
+    _tailorRect = CGRectMake((width - _tailorWidth) / 2, (height - _tailorHeight) / 2, _tailorWidth, _tailorHeight);
+    UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:_tailorRect];
     UIBezierPath *maskBezierPath = [UIBezierPath bezierPathWithRect:rect];
     
     [maskBezierPath appendPath:squarePath];
@@ -99,7 +99,7 @@
 }
 
 #pragma mark - 裁剪圆形
--(void)cropCircle:(CGRect)rect
+-(void)tailorCircle:(CGRect)rect
 {
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
@@ -107,8 +107,8 @@
     CGContextSaveGState(contextRef);
     CGContextSetRGBFillColor(contextRef, 0, 0, 0, 0.4);
     
-    _squareRect = CGRectMake((width - _cropWidth) / 2, (height - _cropHeight) / 2, _cropWidth, _cropHeight);
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:_squareRect];
+    _tailorRect = CGRectMake((width - _tailorWidth) / 2, (height - _tailorHeight) / 2, _tailorWidth, _tailorHeight);
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:_tailorRect];
     UIBezierPath *maskBezierPath = [UIBezierPath bezierPathWithRect:rect];
     
     [maskBezierPath appendPath:circlePath];

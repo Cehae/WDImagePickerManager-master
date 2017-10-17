@@ -73,7 +73,6 @@ WDSingletonM(Manager);
     [[WDImageManager sharedManager] getImage:controller];
 }
 
-
 #pragma mark - 调起相机/相册
 -(void)getImage:(UIViewController *)controller
 {
@@ -119,8 +118,6 @@ WDSingletonM(Manager);
     
 }
 
-
-
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
 
@@ -138,35 +135,35 @@ WDSingletonM(Manager);
         case WDTailorTypeSquare:
         {
 
-            WDTailorController *cutVC = [[WDTailorController alloc] init];
-            cutVC.delegate = self;
-            cutVC.originalImage = self.originalImage;
-            cutVC.navigationTitle = @"裁剪矩形";
+            WDTailorController *tailorVC = [[WDTailorController alloc] init];
+            tailorVC.delegate = self;
+            tailorVC.originalImage = self.originalImage;
+            tailorVC.navigationTitle = @"裁剪矩形";
             
-            cutVC.tailorSize  = self.tailorSize;
-            cutVC.mode = WDImageMaskViewModeSquare;
+            tailorVC.tailorSize  = self.tailorSize;
+            tailorVC.mode = WDImageMaskViewModeSquare;
             
-            cutVC.dotted = YES;
-            cutVC.lineColor = [UIColor whiteColor];
+            tailorVC.dotted = YES;
+            tailorVC.lineColor = [UIColor whiteColor];
 
-            [picker pushViewController:cutVC animated:YES];
+            [picker pushViewController:tailorVC animated:YES];
         }
             break;
         case WDTailorTypeCircle:
         {
             
-            WDTailorController *cutVC = [[WDTailorController alloc] init];
-            cutVC.delegate = self;
-            cutVC.originalImage = self.originalImage;
-            cutVC.navigationTitle = @"裁剪圆形";
+            WDTailorController *tailorVC = [[WDTailorController alloc] init];
+            tailorVC.delegate = self;
+            tailorVC.originalImage = self.originalImage;
+            tailorVC.navigationTitle = @"裁剪圆形";
             
-            cutVC.tailorSize  = self.tailorSize;
-            cutVC.mode = WDImageMaskViewModeCircle;
+            tailorVC.tailorSize  = self.tailorSize;
+            tailorVC.mode = WDImageMaskViewModeCircle;
             
-            cutVC.dotted = YES;
-            cutVC.lineColor = [UIColor redColor];
+            tailorVC.dotted = YES;
+            tailorVC.lineColor = [UIColor redColor];
 
-            [picker pushViewController:cutVC animated:YES];
+            [picker pushViewController:tailorVC animated:YES];
             
         }
             break;

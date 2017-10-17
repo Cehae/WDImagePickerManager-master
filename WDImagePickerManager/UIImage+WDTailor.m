@@ -23,7 +23,7 @@
     return newImage;
 }
 
-+(UIImage *)fitScreenWithImage:(UIImage *)image
++(UIImage *)fixScreenWithImage:(UIImage *)image
 {
     CGSize newSize;
     BOOL min = image.size.height>image.size.width;
@@ -123,9 +123,11 @@
     
     return img;
 }
+
+
 #pragma mark - 裁剪图片
 
-- (UIImage *)cropSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
+- (UIImage *)tailorSquareImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
 {
     
     CGRect rect = CGRectMake(x, y, width, height);
@@ -139,7 +141,7 @@
     return image;
 }
 
-- (UIImage *)cropCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
+- (UIImage *)tailorCircleImageWithX:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height
 {
     
     CGRect rect = CGRectMake(x, y, width, height);
