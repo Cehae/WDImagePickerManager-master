@@ -1,5 +1,5 @@
 //
-//  WDTailoringController.m
+//  WDTailorController.m
 //  WDImagePickerManagerDemo
 //
 //  Created by huylens on 17/2/9.
@@ -8,15 +8,15 @@
 //  Github:https://github.com/Cehae/WDImagePickerManager-master
 //  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
 //
-#import "WDTailoringController.h"
+#import "WDTailorController.h"
 
 #import "WDImageMaskView.h"
 
-#import "UIImage+WDCrop.h"
+#import "UIImage+WDTailor.h"
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
-@interface WDTailoringController ()<UIScrollViewDelegate,WDImageMaskViewDelegate>
+@interface WDTailorController ()<UIScrollViewDelegate,WDImageMaskViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *scrollView;//用于缩放
 
@@ -24,18 +24,17 @@
 
 @property (nonatomic,strong) WDImageMaskView *maskView;//显示裁剪形状和区域
 
-@property (nonatomic,assign) CGFloat cropWidth;
-@property (nonatomic,assign) CGFloat cropHeight;
-@property (nonatomic,assign) CGRect rect;
+@property (nonatomic,assign) CGFloat tailorWidth;
+@property (nonatomic,assign) CGFloat tailorHeight;
 @property (nonatomic,assign) UIEdgeInsets imageInset;
 @end
 
-@implementation WDTailoringController
+@implementation WDTailorController
 -(instancetype)init
 {
     if (self = [super init])
     {
-        self.cutSize  = CGSizeZero;
+        self.tailorSize  = CGSizeZero;
     }
     return self;
 }
@@ -58,7 +57,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.cutImage = [UIImage fitScreenWithImage:self.cutImage];
+    self.originalImage = [UIImage fixOrientation:self.originalImage];
     
     [self initScrollview];
     
@@ -76,14 +75,14 @@
     [self.view addSubview:_scrollView];
     
     _scrollView.delegate = self;
-    _scrollView.contentSize = self.cutImage.size;
+    _scrollView.contentSize = self.originalImage.size;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.bounces = YES;
     
     
     //imageview
-    self.imageView = [[UIImageView alloc] initWithImage:self.cutImage];
+    self.imageView = [[UIImageView alloc] initWithImage:self.originalImage];
     [_scrollView addSubview:_imageView];
     _imageView.center = self.view.center;
 }
@@ -94,7 +93,7 @@
     [self.view addSubview:self.maskView];
     _maskView.delegate = self;
     
-    _maskView.cutSize = self.cutSize;
+    _maskView.cutSize = self.tailorSize;
     _maskView.mode = self.mode;
     
     _maskView.dotted = self.isDotted;
@@ -103,11 +102,11 @@
 }
 -(void)initTopView
 {
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WDSCREEN_WIDTH, 64)];
     bgView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:bgView];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WDSCREEN_WIDTH, 64)];
     titleLabel.font = [UIFont systemFontOfSize:17];
     titleLabel.text = _navigationTitle?_navigationTitle:@"裁剪图片";
     titleLabel.textColor = [UIColor whiteColor];
@@ -118,11 +117,11 @@
 
 -(void)initBottomView
 {
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-45, SCREEN_WIDTH, 45)];
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, WDSCREEN_HEIGHT-45, WDSCREEN_WIDTH, 45)];
     [self.view addSubview:bottomView];
     bottomView.backgroundColor = [UIColor clearColor];
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WDSCREEN_WIDTH, 45)];
     view.backgroundColor = [UIColor blackColor];
     view.alpha = 0.5f;
     [bottomView addSubview:view];
@@ -137,7 +136,7 @@
     [cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 80, 5, 70, 30)];
+    UIButton *sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(WDSCREEN_WIDTH - 80, 5, 70, 30)];
     [bottomView addSubview:sureBtn];
     [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
     [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -147,25 +146,26 @@
     
 }
 #pragma mark - buttonAction
--(void)cancelBtnClicked
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageCropperDidCancel:)]) {
-        [self.delegate imageCropperDidCancel:self];
-    }
-}
 - (void)sureBtnClicked
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageCropper:didFinished:)]) {
-        [self.delegate imageCropper:self didFinished:[self cropImage]];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(WDTailorController:didSelectSure:)]) {
+        [self.delegate WDTailorController:self didSelectSure:[self cropImage]];
+    }
+}
+-(void)cancelBtnClicked
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(WDTailorControllerDidSelectCancel:)]) {
+        [self.delegate WDTailorControllerDidSelectCancel:self];
     }
 }
 #pragma mark - setter方法
--(void)setCutSize:(CGSize)cutSize
+-(void)setTailorSize:(CGSize)tailorSize
 {
-    _cropWidth = cutSize.width > 0 ? cutSize.width:SCREEN_WIDTH;
-    _cropHeight = cutSize.height > 0 ? cutSize.height:SCREEN_WIDTH;
-    _cutSize = CGSizeMake(_cropWidth, _cropHeight);
+    _tailorWidth = tailorSize.width > 0 ? tailorSize.width:WDSCREEN_WIDTH;
+    _tailorHeight = tailorSize.height > 0 ? tailorSize.height:WDSCREEN_WIDTH;
+    _tailorSize = CGSizeMake(_tailorWidth, _tailorHeight);
 }
+
 #pragma mark - 裁剪图片
 - (UIImage *)cropImage {
     CGFloat zoomScale = _scrollView.zoomScale;
@@ -178,21 +178,21 @@
     aX = aX / zoomScale;
     aY = aY / zoomScale;
     
-    CGFloat aWidth =  MAX(self.cropWidth / zoomScale, self.cropWidth);
-    CGFloat aHeight = MAX(self.cropHeight / zoomScale, self.cropHeight);
+    CGFloat aWidth =  MAX(self.tailorWidth / zoomScale, self.tailorWidth);
+    CGFloat aHeight = MAX(self.tailorHeight / zoomScale, self.tailorHeight);
     if (zoomScale>1) {
-        aWidth = self.cropWidth/zoomScale;
-        aHeight = self.cropHeight/zoomScale;
+        aWidth = self.tailorWidth/zoomScale;
+        aHeight = self.tailorHeight/zoomScale;
     }
     
     UIImage *image = nil;
     
-    if (self.mode == ImageMaskViewModeCircle)
+    if (self.mode == WDImageMaskViewModeCircle)
     {
-        image = [self.cutImage cropCircleImageWithX:aX y:aY width:aWidth height:aHeight];
+        image = [self.originalImage cropCircleImageWithX:aX y:aY width:aWidth height:aHeight];
     }else
     {
-        image = [self.cutImage cropSquareImageWithX:aX y:aY width:aWidth height:aHeight];
+        image = [self.originalImage cropSquareImageWithX:aX y:aY width:aWidth height:aHeight];
     }
         
     return image;
@@ -202,22 +202,24 @@
 #pragma mark - WDImageMaskViewDelegate
 -(void)layoutScrollViewWithRect:(CGRect)rect
 {
-    _rect = rect;
-    CGFloat top = (self.cutImage.size.height-rect.size.height)/2;
-    CGFloat left = (self.cutImage.size.width-rect.size.width)/2;
+    CGFloat top = (self.originalImage.size.height-rect.size.height)/2;
+    CGFloat left = (self.originalImage.size.width-rect.size.width)/2;
     CGFloat bottom = self.view.bounds.size.height-top-rect.size.height;
     CGFloat right = self.view.bounds.size.width-rect.size.width-left;
     self.scrollView.contentInset = UIEdgeInsetsMake(top, left, bottom, right);
     
     CGFloat maskCircleWidth = rect.size.width;
     
-    CGSize imageSize = self.cutImage.size;
+    CGSize imageSize = self.originalImage.size;
 
     CGFloat minimunZoomScale = imageSize.width < imageSize.height ? maskCircleWidth / imageSize.width : maskCircleWidth / imageSize.height;
     CGFloat maximumZoomScale = 2.0;
     self.scrollView.minimumZoomScale = minimunZoomScale;
     self.scrollView.maximumZoomScale = maximumZoomScale;
-    self.scrollView.zoomScale = self.scrollView.zoomScale < minimunZoomScale ? minimunZoomScale : self.scrollView.zoomScale;
+    
+//    self.scrollView.zoomScale = self.scrollView.zoomScale < minimunZoomScale ? minimunZoomScale : self.scrollView.zoomScale;
+    
+    self.scrollView.zoomScale =  WDSCREEN_WIDTH/self.originalImage.size.width;
     _imageInset = self.scrollView.contentInset;
     
 }

@@ -25,9 +25,9 @@
     
     __typeof(self) __weak weakSelf = self;
     
-    [[WDImageManager sharedManager] getOriginalImageInVC:self withCallback:^(UIImage *image) {
+    [WDImageManager getOriginalImageInVC:self withCallback:^(UIImage * OriginalImage,UIImage * tailoredImage) {
         
-        weakSelf.imageV.image = image;
+        weakSelf.imageV.image = OriginalImage;
         
     }];
     
@@ -37,8 +37,8 @@
     
     __typeof(self) __weak weakSelf = self;
     
-    [[WDImageManager sharedManager] getSquareImageInVC:self withSize:CGSizeMake(100,50) withCallback:^(UIImage *image) {
-        weakSelf.imageV.image = image;
+    [WDImageManager getSquareImageInVC:self withSize:CGSizeMake(100,50) withCallback:^(UIImage * OriginalImage,UIImage * tailoredImage) {
+        weakSelf.imageV.image = tailoredImage;
         
     }];
 }
@@ -46,8 +46,8 @@
     
     __typeof(self) __weak weakSelf = self;
     
-    [[WDImageManager sharedManager] getCircleImageInVc:self withSize:CGSizeMake(200, 50) withCallback:^(UIImage *image) {
-        weakSelf.imageV.image = image;
+    [WDImageManager getCircleImageInVc:self withSize:CGSizeMake(200, 50) withCallback:^(UIImage * OriginalImage,UIImage * tailoredImage) {
+        weakSelf.imageV.image = tailoredImage;
         
     }];
 }

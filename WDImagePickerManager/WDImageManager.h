@@ -9,14 +9,12 @@
 //  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
 //
 #import <UIKit/UIKit.h>
-#import "WDSingleton.h"
 
-typedef void(^getImageBlock)(UIImage * image);
+typedef void(^getImageBlock)(UIImage * OriginalImage,UIImage * tailoredImage);
 
 @interface WDImageManager : NSObject
 
-WDSingletonH(Manager);
-
+//WDSingletonH(Manager);
 
 /**
  获取原始图片-不裁剪
@@ -24,7 +22,7 @@ WDSingletonH(Manager);
  @param controller 传入的控制器
  @param getimageblock 回调
  */
--(void)getOriginalImageInVC:(UIViewController *)controller withCallback:(getImageBlock) getimageblock;
++(void)getOriginalImageInVC:(UIViewController *)controller withCallback:(getImageBlock) getimageblock;
 
 
 /**
@@ -34,7 +32,7 @@ WDSingletonH(Manager);
  @param size 裁剪尺寸
  @param getimageblock 回调
  */
--(void)getSquareImageInVC:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock;
++(void)getSquareImageInVC:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock;
 
 
 /**
@@ -44,6 +42,6 @@ WDSingletonH(Manager);
  @param size 裁剪尺寸
  @param getimageblock 回调
  */
--(void)getCircleImageInVc:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock;
++(void)getCircleImageInVc:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock;
 
 @end

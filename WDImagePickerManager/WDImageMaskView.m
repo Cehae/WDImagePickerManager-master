@@ -10,10 +10,8 @@
 //
 #import "WDImageMaskView.h"
 
-#define SCREEN_WIDTH    ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT   ([UIScreen mainScreen].bounds.size.height)
-
-
+#define WDSCREEN_WIDTH    ([UIScreen mainScreen].bounds.size.width)
+#define WDSCREEN_HEIGHT   ([UIScreen mainScreen].bounds.size.height)
 
 @implementation WDImageMaskView
 {
@@ -40,8 +38,8 @@
 #pragma mark - setter方法
 -(void)setCutSize:(CGSize)cutSize
 {
-    _cropWidth = cutSize.width > 0 ? cutSize.width:SCREEN_WIDTH;
-    _cropHeight = cutSize.height > 0 ? cutSize.height:SCREEN_WIDTH;
+    _cropWidth = cutSize.width > 0 ? cutSize.width:WDSCREEN_WIDTH;
+    _cropHeight = cutSize.height > 0 ? cutSize.height:WDSCREEN_WIDTH;
     _cutSize = CGSizeMake(_cropWidth, _cropHeight);
 }
 -(void)setLineColor:(UIColor *)lineColor
@@ -55,7 +53,7 @@
 
     [super drawRect:rect];
     
-    if (self.mode == ImageMaskViewModeCircle)
+    if (self.mode == WDImageMaskViewModeCircle)
     {
         [self cropCircle:rect];
     }else

@@ -9,22 +9,25 @@
 //  相关博客:http://blog.csdn.net/Cehae/article/details/52904840
 //
 #import "WDImageManager.h"
-#import "WDTailoringController.h"
+#import "WDTailorController.h"
 
-typedef NS_ENUM(NSInteger, WDImageType){
-    WDImageTypeOriginal = 1, // 原始图片
-    WDImageTypeSquare = 2,   // 矩形
-    WDImageTypeCircle = 3,   // 圆形
+#import "WDSingleton.h"
+
+typedef NS_ENUM(NSInteger, WDTailorType){
+    WDTailorTypeOriginal = 1, // 原始图片
+    WDTailorTypeSquare = 2,   // 矩形
+    WDTailorTypeCircle = 3,   // 圆形
 };
 
-@interface WDImageManager()<WDTailoringControllerDelegate>
+@interface WDImageManager()<WDTailorControllerDelegate>
 
-@property(nonatomic,assign) WDImageType imageType;
+@property (nonatomic,assign) WDTailorType tailorType;
 
-@property(nonatomic,copy) getImageBlock callBack;
+@property (nonatomic,copy) getImageBlock callBack;
 
-@property (nonatomic, assign) CGSize cutSize;
+@property (nonatomic,assign) CGSize tailorSize;
 
+@property (nonatomic,strong) UIImage * originalImage;
 
 @end
 
@@ -33,41 +36,41 @@ typedef NS_ENUM(NSInteger, WDImageType){
 WDSingletonM(Manager);
 
 #pragma mark - 获取原始图片
--(void)getOriginalImageInVC:(UIViewController *)controller withCallback:(getImageBlock) getimageblock
++(void)getOriginalImageInVC:(UIViewController *)controller withCallback:(getImageBlock) getimageblock
 {
     
-    self.imageType = WDImageTypeOriginal;
+    [WDImageManager sharedManager].tailorType = WDTailorTypeOriginal;
 
-    self.callBack = getimageblock;
+    [WDImageManager sharedManager].callBack = [getimageblock copy];
     
-    self.cutSize = CGSizeZero;
+    [WDImageManager sharedManager].tailorSize = CGSizeZero;
     
-    [self getImage:controller];
+    [[WDImageManager sharedManager] getImage:controller];
 
 }
 
 #pragma mark - 获取矩形图片
--(void)getSquareImageInVC:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock
++(void)getSquareImageInVC:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock
 {
-    self.imageType = WDImageTypeSquare;
+    [WDImageManager sharedManager].tailorType = WDTailorTypeSquare;
     
-    self.callBack = getimageblock;
+    [WDImageManager sharedManager].callBack = [getimageblock copy];
     
-    self.cutSize = size;
+    [WDImageManager sharedManager].tailorSize = size;
     
-    [self getImage:controller];
+    [[WDImageManager sharedManager] getImage:controller];
 
 }
 #pragma mark - 获取圆形图片
--(void)getCircleImageInVc:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock
++(void)getCircleImageInVc:(UIViewController *)controller withSize:(CGSize)size  withCallback:(getImageBlock) getimageblock
 {
-    self.imageType = WDImageTypeCircle;
+    [WDImageManager sharedManager].tailorType = WDTailorTypeCircle;
     
-    self.callBack = getimageblock;
+    [WDImageManager sharedManager].callBack = [getimageblock copy];
     
-    self.cutSize = size;
+    [WDImageManager sharedManager].tailorSize = size;
 
-    [self getImage:controller];
+    [[WDImageManager sharedManager] getImage:controller];
 }
 
 
@@ -77,9 +80,9 @@ WDSingletonM(Manager);
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
     
-    [alertVC addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
         
-        //拍照
+        //相机
         UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
         if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
             sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -121,27 +124,27 @@ WDSingletonM(Manager);
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
 
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.originalImage = info[UIImagePickerControllerOriginalImage];
 
-    switch (self.imageType) {
+    switch (self.tailorType) {
             //原始
-        case WDImageTypeOriginal:
+        case WDTailorTypeOriginal:
         {
             [picker dismissViewControllerAnimated:YES completion:nil];
-            !self.callBack ? :self.callBack(image);
+            !self.callBack ? :self.callBack(self.originalImage,self.originalImage);
         }
             break;
             //矩形
-        case WDImageTypeSquare:
+        case WDTailorTypeSquare:
         {
 
-            WDTailoringController *cutVC = [[WDTailoringController alloc] init];
+            WDTailorController *cutVC = [[WDTailorController alloc] init];
             cutVC.delegate = self;
-            cutVC.cutImage = image;
+            cutVC.originalImage = self.originalImage;
             cutVC.navigationTitle = @"裁剪矩形";
             
-            cutVC.cutSize  = self.cutSize;
-            cutVC.mode = ImageMaskViewModeSquare;
+            cutVC.tailorSize  = self.tailorSize;
+            cutVC.mode = WDImageMaskViewModeSquare;
             
             cutVC.dotted = YES;
             cutVC.lineColor = [UIColor whiteColor];
@@ -149,16 +152,16 @@ WDSingletonM(Manager);
             [picker pushViewController:cutVC animated:YES];
         }
             break;
-        case WDImageTypeCircle:
+        case WDTailorTypeCircle:
         {
             
-            WDTailoringController *cutVC = [[WDTailoringController alloc] init];
+            WDTailorController *cutVC = [[WDTailorController alloc] init];
             cutVC.delegate = self;
-            cutVC.cutImage = image;
+            cutVC.originalImage = self.originalImage;
             cutVC.navigationTitle = @"裁剪圆形";
             
-            cutVC.cutSize  = self.cutSize;
-            cutVC.mode = ImageMaskViewModeCircle;
+            cutVC.tailorSize  = self.tailorSize;
+            cutVC.mode = WDImageMaskViewModeCircle;
             
             cutVC.dotted = YES;
             cutVC.lineColor = [UIColor redColor];
@@ -173,16 +176,18 @@ WDSingletonM(Manager);
     }
 }
 
-#pragma mark - WDTailoringControllerDelegate
-- (void)imageCropper:(WDTailoringController *)cropperViewController didFinished:(UIImage *)editedImage
+#pragma mark - WDTailorControllerDelegate
+- (void)WDTailorController:(WDTailorController *)tailorController didSelectSure:(UIImage *)tailoredImage
 {
-    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
+    [tailorController dismissViewControllerAnimated:YES completion:nil];
 
-     !self.callBack ? :self.callBack(editedImage);
+     !self.callBack ? :self.callBack(self.originalImage,tailoredImage);
 }
-- (void)imageCropperDidCancel:(WDTailoringController *)cropperViewController
+- (void)WDTailorControllerDidSelectCancel:(WDTailorController *)tailorController
 {
-    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
+    self.originalImage = nil;
+    
+    [tailorController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

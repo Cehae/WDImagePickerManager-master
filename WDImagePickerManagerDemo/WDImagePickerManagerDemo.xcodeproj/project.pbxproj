@@ -14,9 +14,9 @@
 		BECFAF951E1CC8F70050F494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BECFAF941E1CC8F70050F494 /* Assets.xcassets */; };
 		BECFAF981E1CC8F70050F494 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECFAF961E1CC8F70050F494 /* LaunchScreen.storyboard */; };
 		BEDCE8E81E4C6EC5006573F4 /* WDImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */; };
-		BEDCE8F61E4C764A006573F4 /* WDTailoringController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */; };
+		BEDCE8F61E4C764A006573F4 /* WDTailorController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCE8F51E4C764A006573F4 /* WDTailorController.m */; };
 		BEFC66891E4D677A004F23BF /* WDImageMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFC66881E4D677A004F23BF /* WDImageMaskView.m */; };
-		BEFC668C1E4D9C74004F23BF /* UIImage+WDCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */; };
+		BEFC668C1E4D9C74004F23BF /* UIImage+WDTailor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFC668B1E4D9C74004F23BF /* UIImage+WDTailor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +33,12 @@
 		BEDCE8E51E4C6E61006573F4 /* WDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDSingleton.h; sourceTree = "<group>"; };
 		BEDCE8E61E4C6EC5006573F4 /* WDImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImageManager.h; sourceTree = "<group>"; };
 		BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImageManager.m; sourceTree = "<group>"; };
-		BEDCE8F41E4C764A006573F4 /* WDTailoringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTailoringController.h; sourceTree = "<group>"; };
-		BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTailoringController.m; sourceTree = "<group>"; };
+		BEDCE8F41E4C764A006573F4 /* WDTailorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDTailorController.h; sourceTree = "<group>"; };
+		BEDCE8F51E4C764A006573F4 /* WDTailorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDTailorController.m; sourceTree = "<group>"; };
 		BEFC66871E4D677A004F23BF /* WDImageMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImageMaskView.h; sourceTree = "<group>"; };
 		BEFC66881E4D677A004F23BF /* WDImageMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImageMaskView.m; sourceTree = "<group>"; };
-		BEFC668A1E4D9C74004F23BF /* UIImage+WDCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WDCrop.h"; sourceTree = "<group>"; };
-		BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WDCrop.m"; sourceTree = "<group>"; };
+		BEFC668A1E4D9C74004F23BF /* UIImage+WDTailor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WDTailor.h"; sourceTree = "<group>"; };
+		BEFC668B1E4D9C74004F23BF /* UIImage+WDTailor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WDTailor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +55,12 @@
 		BE3C5E3F1E1E4C5F00745005 /* WDImagePickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				BEFC668A1E4D9C74004F23BF /* UIImage+WDCrop.h */,
-				BEFC668B1E4D9C74004F23BF /* UIImage+WDCrop.m */,
+				BEFC668A1E4D9C74004F23BF /* UIImage+WDTailor.h */,
+				BEFC668B1E4D9C74004F23BF /* UIImage+WDTailor.m */,
 				BEFC66871E4D677A004F23BF /* WDImageMaskView.h */,
 				BEFC66881E4D677A004F23BF /* WDImageMaskView.m */,
-				BEDCE8F41E4C764A006573F4 /* WDTailoringController.h */,
-				BEDCE8F51E4C764A006573F4 /* WDTailoringController.m */,
+				BEDCE8F41E4C764A006573F4 /* WDTailorController.h */,
+				BEDCE8F51E4C764A006573F4 /* WDTailorController.m */,
 				BEDCE8E51E4C6E61006573F4 /* WDSingleton.h */,
 				BEDCE8E61E4C6EC5006573F4 /* WDImageManager.h */,
 				BEDCE8E71E4C6EC5006573F4 /* WDImageManager.m */,
@@ -141,7 +141,7 @@
 				TargetAttributes = {
 					BECFAF841E1CC8F70050F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = LWF36B7NP9;
+						DevelopmentTeam = NNEUYJ7Z36;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -184,10 +184,10 @@
 			files = (
 				BECFAF901E1CC8F70050F494 /* ViewController.m in Sources */,
 				BEFC66891E4D677A004F23BF /* WDImageMaskView.m in Sources */,
-				BEDCE8F61E4C764A006573F4 /* WDTailoringController.m in Sources */,
+				BEDCE8F61E4C764A006573F4 /* WDTailorController.m in Sources */,
 				BEDCE8E81E4C6EC5006573F4 /* WDImageManager.m in Sources */,
 				BECFAF8D1E1CC8F70050F494 /* AppDelegate.m in Sources */,
-				BEFC668C1E4D9C74004F23BF /* UIImage+WDCrop.m in Sources */,
+				BEFC668C1E4D9C74004F23BF /* UIImage+WDTailor.m in Sources */,
 				BECFAF8A1E1CC8F70050F494 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,14 +306,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LWF36B7NP9;
+				DEVELOPMENT_TEAM = NNEUYJ7Z36;
 				INFOPLIST_FILE = WDImagePickerManagerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.meitianhui.wwd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jkinvest.storestestssWD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4387eff8-428f-4469-897a-b2baf3af9bcb";
-				PROVISIONING_PROFILE_SPECIFIER = "com.meitianhui.all-Dev";
+				PROVISIONING_PROFILE = "275d69c2-bde0-4658-afa7-798579b04832";
+				PROVISIONING_PROFILE_SPECIFIER = JKWildcardID_Dev;
 			};
 			name = Debug;
 		};
@@ -321,14 +321,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LWF36B7NP9;
+				DEVELOPMENT_TEAM = NNEUYJ7Z36;
 				INFOPLIST_FILE = WDImagePickerManagerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.meitianhui.wwd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jkinvest.storestestssWD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4387eff8-428f-4469-897a-b2baf3af9bcb";
-				PROVISIONING_PROFILE_SPECIFIER = "com.meitianhui.all-Dev";
+				PROVISIONING_PROFILE = "275d69c2-bde0-4658-afa7-798579b04832";
+				PROVISIONING_PROFILE_SPECIFIER = JKWildcardID_Dev;
 			};
 			name = Release;
 		};
